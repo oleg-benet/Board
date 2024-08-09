@@ -1,14 +1,25 @@
 from .models import Post, User, Category, Comment, Subscriber
 from django.contrib import admin
-#from modeltranslation.admin import TranslationAdmin
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django import forms
 
-# class PostAdmin(admin.ModelAdmin):
-#     list_display = [field.name for field in Post._meta.get_fields()]
-#     list_display.remove('category')
-#     list_display.remove('postcategory')
-#     list_display.remove('comment')
-#     list_filter = ('title', 'rating', 'author', 'post_time')
-#     search_fields = ('id', 'author__user__username')
+
+class PostAdminForm(forms.ModelForm):
+    text = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Post
+        fields = '__all__'
+
+
+# from modeltranslation.admin import TranslationAdmin
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'text', 'user', 'category', 'create_time', 'update_time']
+    form = PostAdminForm
+
+
+
 # class CommentAdmin(admin.ModelAdmin):
 #     list_display = [field.name for field in Comment._meta.get_fields()]
 #
@@ -34,9 +45,8 @@ from django.contrib import admin
 # admin.site.register(Category, TransCategoryAdmin)
 # admin.site.register(Comment, CommentAdmin)
 
-admin.site.register(Post)
-admin.site.register(User,)
+admin.site.register(Post, PostAdmin)
+admin.site.register(User)
 admin.site.register(Category)
 admin.site.register(Comment)
 admin.site.register(Subscriber)
-

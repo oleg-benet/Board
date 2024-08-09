@@ -1,0 +1,41 @@
+{% extends 'flatpages/default.html' %}
+<!--{% load i18n %}-->
+
+
+{% block title %}
+Posts
+{% endblock title %}
+
+
+{% block content %}
+<style>
+   .outline {
+    border: 3px solid green;
+    padding: 10px;
+   }
+</style>
+<h1>&nbsp;&nbsp;&nbsp;Всего объявлений - {{posts|length}}</h1>
+<br>
+<br>
+   {% if posts %}
+           {% for post in posts %}
+                 <hr>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<button><em><a href="/post/{{ post.id }}">Объявление</a>&nbsp;&nbsp;&nbsp;&nbsp;{{ post.id }}</em></button></h4>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Автор:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ post.user }}</h4>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Заголовок:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ post.title}}</h4>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Дата создания:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ post.create_time|date:'d M Y' }} </h4>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Дата последней редакции:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ post.update_time|date:'d M Y' }} </h4>
+                 <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Категория:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ post.category }}</h4>
+
+                 <div class="outline">
+                     <p>{{ post.text|safe }}</p>
+                 </div>
+
+           {% endfor %}
+
+
+   {% else %}
+       <h2>&nbsp;&nbsp;&nbsp;Объявлений нет!</h2>
+   {% endif %}
+
+{% endblock content %}

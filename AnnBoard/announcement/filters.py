@@ -1,5 +1,5 @@
 from django.forms import DateInput
-from django_filters import FilterSet
+from django_filters import FilterSet, CharFilter
 from .models import Comment, Post
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,5 +15,5 @@ class PostFilter(FilterSet):
 
     def __init__(self, *args, **kwargs):
         super(PostFilter, self).__init__(*args, **kwargs)
-        self.filters['post'].quaryset = Post.objects.filter(user__id=kwargs['request'])
+        self.filters['post'].queryset = Post.objects.filter(user__id=kwargs['request'])
         
