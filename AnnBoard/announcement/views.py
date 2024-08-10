@@ -122,9 +122,12 @@ class AcceptedCommentList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        queryset = Comment.objects.filter(status=True)
+        post_id = self.request.path[10::]
+        queryset = Comment.objects.filter(status=True, post_id=post_id)
         length = queryset.count()
         context['length'] = length
+        context['queryset'] = queryset
+        context['post_id'] = post_id
         return context
 
 

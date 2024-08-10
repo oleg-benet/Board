@@ -10,7 +10,7 @@ urlpatterns = [
     path('post/<int:id>/edit/', PostEdit.as_view(), name='post_edit'),
     path('post/<int:id>', PostDetail.as_view(), name='post_detail'),
     path('<int:id>', CommentCreate.as_view(), name='comment_create'),
-    path('comments/', AcceptedCommentList.as_view(), name='comment_list'),
+    path('comments/<int:id>', AcceptedCommentList.as_view(), name='comment_list'),
     path('comment/<int:id>/delete/', CommentDelete.as_view(), name='comment_delete'),
     path('comment/<int:id>/accept/', accept, name='accept')
 ]

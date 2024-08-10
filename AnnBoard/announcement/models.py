@@ -18,7 +18,7 @@ class User(AbstractUser):
 
 class Category(models.Model):
     name = models.CharField(max_length=25)
-    subscribers = models.ManyToManyField(User, related_name='categories', through='Subscriber')
+    # subscribers = models.ManyToManyField(User, related_name='categories', through='Subscriber')
 
     def __str__(self):
         return self.name
@@ -51,8 +51,8 @@ class Comment(models.Model):
         return reverse('post_detail', args=[str(self.post.id)])
 
 
-class Subscriber(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+# class Subscriber(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 

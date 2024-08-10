@@ -14,19 +14,20 @@ Posts
     padding: 10px;
    }
 </style>
-<h1>&nbsp;&nbsp;&nbsp;Всего принятых откликов - {{ length }}</h1>
+<br>
+<h2>&nbsp;&nbsp;&nbsp;На объявление {{ post_id }} принятых откликов - {{ length }}</h2>
 <br>
 <br>
-   {% if comments %}
-           {% for comment in comments %}
-                {% if comment.status == True %}
+   {% if queryset %}
+           {% for comment in queryset %}
+
                  <hr>
                  <h4>&nbsp;&nbsp;&nbsp;&nbsp;<em>Откликнулся:</em>&nbsp;&nbsp;&nbsp;&nbsp;{{ comment.user }}</h4>
 
                  <div class="outline">
                      <p>{{ comment.text }}</p>
                  </div>
-                 {% endif %}
+
            {% endfor %}
 
 

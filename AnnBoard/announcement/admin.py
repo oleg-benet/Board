@@ -1,4 +1,4 @@
-from .models import Post, User, Category, Comment, Subscriber
+from .models import Post, User, Category, Comment #, Subscriber
 from django.contrib import admin
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
@@ -49,4 +49,4 @@ admin.site.register(Post, PostAdmin)
 admin.site.register(User)
 admin.site.register(Category)
 admin.site.register(Comment)
-admin.site.register(Subscriber)
+# admin.site.register(Subscriber)
