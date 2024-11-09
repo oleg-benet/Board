@@ -8,7 +8,6 @@ from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
 
 
-
 class User(AbstractUser):
     code = models.CharField(max_length=15, blank=True, null=True)
 
@@ -18,15 +17,13 @@ class User(AbstractUser):
 
 class Category(models.Model):
     name = models.CharField(max_length=25)
-    # subscribers = models.ManyToManyField(User, related_name='categories', through='Subscriber')
 
     def __str__(self):
         return self.name
 
 
-
 class Post(models.Model):
-    title = models.CharField(max_length=255, verbose_name= "Заголовок")
+    title = models.CharField(max_length=255, verbose_name="Заголовок")
     # text = models.TextField()
     text = RichTextUploadingField(verbose_name="Содержание")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -49,10 +46,3 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.post.id)])
-
-
-# class Subscriber(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-
